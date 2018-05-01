@@ -20,12 +20,13 @@ app.post('/rateconvertor', (req,res) => {
 let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
 let vxd = req.body.queryResult.parameters['vxd'];
 let amount = req.body.queryResult.parameters['amount'];
+console.log(fxd);
 
 
 
 return res.json({
       
-      fulfillmentText: "Your siaa ID Is someone@somewhere.com" + fxd,
+      fulfillmentText: "Your siaa ID Is someone@somewhere.com",
        source: "From our Webservice"
      });
 });
