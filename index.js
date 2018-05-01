@@ -20,6 +20,7 @@ app.post('/rateconvertor', (req,res) => {
 //let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
 //let vxd = req.body.queryResult.parameters['vxd'];
 //let amount = req.body.queryResult.parameters['amount'];
+console.log("mic is on");
 console.log(req);
 
 
