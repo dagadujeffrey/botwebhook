@@ -21,7 +21,7 @@ app.post('/rateconvertor', (req,res) => {
 //let vxd = req.body.queryResult.parameters['vxd'];
 //let amount = req.body.queryResult.parameters['amount'];
 console.log("mic is on");
-console.log(req.responseId);
+console.log('Body ' + JSON.stringify(req.body));
 
 
 
