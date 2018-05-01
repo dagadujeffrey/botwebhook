@@ -93,7 +93,7 @@ exports.dialogflowWeatherWebhook = (req, res) => {
   );
 }
 ///////////////////////////////////////
-*/
+
 
 
    // Call the weather API
@@ -197,4 +197,4 @@ function callCurrencyApi (fxd, vxd, amount) {
       });
     });
   });
-}
+}*/
