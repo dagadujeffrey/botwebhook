@@ -17,12 +17,15 @@ console.log('Get User Details BOT Running at ...' + listeningport);
 
 app.post('/rateconvertor', (req,res) => {
 
-console.log(' GetUserdetails being called by dialogflow...');
+let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
+let vxd = req.body.queryResult.parameters['vxd'];
+let amount = req.body.queryResult.parameters['amount'];
 
-console.log('GetEMAILID ACtion fired...');
+
+
 return res.json({
       
-      fulfillmentText: "Your siaa ID Is someone@somewhere.com",
+      fulfillmentText: "Your siaa ID Is someone@somewhere.com" + fxd,
        source: "From our Webservice"
      });
 });
