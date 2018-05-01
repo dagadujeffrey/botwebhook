@@ -16,11 +16,10 @@ console.log('Get User Details BOT Running at ...' + listeningport);
 });
 
 app.post('/rateconvertor', (req,res) => {
-console.log("mic is on");
-console.log('Body ' + JSON.stringify(req.body));
-let fxd = req.body.parameters['fxd']; // city is a required param
-let vxd = req.body.parameters['vxd'];
-let amount = req.body.parameters['amount'];
+
+let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
+let vxd = req.body.queryResult.parameters['vxd'];
+let amount = req.body.queryResult.parameters['amount'];
 
 
 
