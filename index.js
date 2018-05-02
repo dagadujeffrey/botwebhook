@@ -56,7 +56,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         
             let converted_amount = amount * rate;
         // Create response
-            if amount === '1'
+            if (amount === '1')
             {
                 output = `Today's ${fxd} to ${vxd} rate at Stanbic Bank is ${rate}`;
             }
