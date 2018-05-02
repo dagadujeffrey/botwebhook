@@ -52,13 +52,14 @@ function callCurrencyAPI (fxd, vxd,amount) {
         }
         else
         {
-        let rate = response['rate'];
+            let rate = response['rate'];
         
-        let converted_amount = amount * rate;
+            let converted_amount = amount * rate;
         // Create response
-        if amount === 1{
-            output = `Today's ${fxd} to ${vxd} rate at Stanbic Bank is ${rate}`;
-        }
+            if amount === '1'
+            {
+                output = `Today's ${fxd} to ${vxd} rate at Stanbic Bank is ${rate}`;
+            }
         else output = `${amount} ${fxd} to ${vxd} at today's rate is ${converted_amount}`;
        
       }
