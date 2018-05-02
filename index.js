@@ -23,44 +23,14 @@ let vxd = req.body.queryResult.parameters['vxd'];
 let amount = req.body.queryResult.parameters['amount'];
 
 callCurrencyAPI(fxd, vxd, amount).then((output) => {
-    return res.json({
-"fulfillmentText": "This is a text response",
-"fulfillmentMessages": [
-  {
-    "card": {
-      "title": "card title",
-      "subtitle": "card text",
-      "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-      "buttons": [
-        {
-          "text": "button text",
-          "postback": "https://assistant.google.com/"
-        }
-      ]
+    return res.json(
+      { 'fulfillmentText': output ,
+        
+      "facebook": {
+        "text": output
+      }
     }
-  }
-],
-"source": "example.com",
-"payload": {
-  "google": {
-    "expectUserResponse": true,
-    "richResponse": {
-      "items": [
-        {
-          "simpleResponse": {
-            "textToSpeech": "this is a simple response"
-          }
-        }
-      ]
-    }
-  },
-  "facebook": {
-    "text": "Hello, Facebook!"
-  },
-  "slack": {
-    "text": "This is a text response for Slack."
-  }
-}); // Return the results of the weather API to Dialogflow
+    ); // Return the results of the weather API to Dialogflow
   }).catch(() => {
     return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
   });
