@@ -27,7 +27,7 @@ callCurrencyAPI(fxd, vxd, amount).then((output) => {
   }).catch(() => {
     return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
   });
-};
+});
 
 
 function callCurrencyAPI (fxd, vxd,amount) {
