@@ -55,7 +55,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
             let rate = response['rate'];
         
             let converted_amount = amount * rate;
-            converted_amount = converted_amount.toFixed(converted_amount);
+            converted_amount = converted_amount.toFixed(2);
         // Create response
             if (amount === '1')
             {
