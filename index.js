@@ -24,12 +24,7 @@ let amount = req.body.queryResult.parameters['amount'];
 
 callCurrencyAPI(fxd, vxd, amount).then((output) => {
     return res.json(
-      { 'fulfillmentText': output ,
-        
-      "facebook": {
-        "text": 'FB'
-      }
-    }
+      { 'fulfillmentText': output }
     ); // Return the results of the weather API to Dialogflow
   }).catch(() => {
     return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
