@@ -23,8 +23,62 @@ let vxd = req.body.queryResult.parameters['vxd'];
 let amount = req.body.queryResult.parameters['amount'];
 
 callCurrencyAPI(fxd, vxd, amount).then((output) => {
-    return res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
-  }).catch(() => {
+    return res.json({
+"fulfillmentText": output,
+"fulfillmentMessages": [
+  {
+    "card": {
+      "title": "card title",
+      "subtitle": "card text",
+      "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+      "buttons": [
+        {
+          "text": "button text",
+          "postback": "https://assistant.google.com/"
+        }
+      ]
+    }
+  }
+],
+"source": "Stanbic",
+"payload": {
+  "google": {
+    "expectUserResponse": true,
+    "richResponse": {
+      "items": [
+        {
+          "simpleResponse": {
+            "textToSpeech": output
+          }
+        }
+      ]
+    }
+  },
+  "facebook": {
+    "text": output
+  },
+  "slack": {
+    "text": output
+  }
+},
+"outputContexts": [
+  {
+    "name": "projects/${PROJECT_ID}/agent/sessions/${SESSION_ID}/contexts/context name",
+    "lifespanCount": 5,
+    "parameters": {
+      "param": "param value"
+    }
+  }
+],
+"followupEventInput": {
+  "name": "event name",
+  "languageCode": "en-US",
+  "parameters": {
+    "param": "param value"
+  }
+}
+
+}).catch(() => {
     return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
   });
 });
