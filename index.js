@@ -48,7 +48,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         let output = '';
         if (!response)
         {
-          output = `One or more unsupported currencies. Please try again with Euros, Dollars, Ghana Cedis, Pounds or Rands`;
+          output = `Oops. Now here is a currency I do not support. Please try again with Euros, Dollars, Ghana Cedis, Pounds or Rands`;
         }
         else
         {
@@ -56,7 +56,11 @@ function callCurrencyAPI (fxd, vxd,amount) {
         
         let converted_amount = amount * rate;
         // Create response
-        output = `${amount} ${fxd} to ${vxd} at today's rate is ${converted_amount}`;
+        if amount === 1{
+            output = `Today's ${fxd} to ${vxd} rate at Stanbic Bank is ${rate}`;
+        }
+        else output = `${amount} ${fxd} to ${vxd} at today's rate is ${converted_amount}`;
+       
       }
         // Resolve the promise with the output text
         console.log(output);
