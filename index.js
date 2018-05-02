@@ -60,7 +60,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
             {
                 output = `Today's ${fxd} to ${vxd} rate at Stanbic Bank is ${rate}`;
             }
-        else output = `${amount} ${fxd} to ${vxd} at today's rate is ${converted_amount}`;
+        else output = `${amount} ${fxd} to ${vxd} at today's rate is ${vxd} ${converted_amount}`;
        
       }
         // Resolve the promise with the output text
