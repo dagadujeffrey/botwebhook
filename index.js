@@ -27,7 +27,7 @@ callCurrencyAPI(fxd, vxd, amount).then((output) => {
       { 'fulfillmentText': output ,
         
       "facebook": {
-        "text": output
+        "text": 'FB'
       }
     }
     ); // Return the results of the weather API to Dialogflow
