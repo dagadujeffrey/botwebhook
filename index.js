@@ -15,30 +15,25 @@ app.listen(listeningport, function () {
 console.log('Get User Details BOT Running at ...' + listeningport);
 });
 
-app.post('/rateconvertor', (req,res) => {
+app.post('/rateconvertor', (req,res) => 
+{
 
 let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
 let vxd = req.body.queryResult.parameters['vxd'];
 let amount = req.body.queryResult.parameters['amount'];
 
-callCurrencyApi(fxd, vxd, amount).then((output) => {
-
-   webhookresponse = output;
-
-});  
-return res.json({
-      
-      fulfillmentText: webhookresponse,
-       source: "From our Webservice"
-     });
-});
+callCurrencyAPI(fxd, vxd, amount).then((output) => {
+    res.json({ 'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
+  }).catch(() => {
+    res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
+  });
+};
 
 
-function callCurrencyApi (fxd, vxd, amount) {
+function callCurrencyAPI (fxd, vxd,amount) {
   return new Promise((resolve, reject) => {
     // Create the path for the HTTP request to get the weather
-    let path = '/api/convertor/' + fxd + '/' + vxd + '/' + amount;
-    console.log('API Request: ' + host + path);
+   let path = '/api/convertor/' + fxd + '/' + vxd + '/' + amount;
 
     // Make the HTTP request to get the weather
     http.get({host: host, path: path}, (res) => {
@@ -47,6 +42,9 @@ function callCurrencyApi (fxd, vxd, amount) {
       res.on('end', () => {
         // After all the data has been received parse the JSON for desired data
         let response = JSON.parse(body);
+        
+
+        // Create response
         let output = '';
         if (!response)
         {
@@ -55,19 +53,20 @@ function callCurrencyApi (fxd, vxd, amount) {
         else
         {
         let rate = response['rate'];
-        console.log('Rate : ' + rate);
+        
         let converted_amount = amount * rate;
         // Create response
         output = `${amount} ${fxd} to ${vxd} at today's rate is ${converted_amount}`;
       }
         // Resolve the promise with the output text
-        //console.log(output);
+        console.log(output);
         resolve(output);
       });
       res.on('error', (error) => {
-        console.log(`Error calling the weather API: ${error}`)
+        console.log(`Error calling the currency API: ${error}`)
         reject();
       });
     });
   });
 }
+    
