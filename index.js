@@ -24,7 +24,7 @@ let amount = req.body.queryResult.parameters['amount'];
 
 callCurrencyAPI(fxd, vxd, amount).then((output) => {
     return res.json({
-"fulfillmentText": output,
+"fulfillmentText": "This is a text response",
 "fulfillmentMessages": [
   {
     "card": {
@@ -40,7 +40,7 @@ callCurrencyAPI(fxd, vxd, amount).then((output) => {
     }
   }
 ],
-"source": "Stanbic",
+"source": "example.com",
 "payload": {
   "google": {
     "expectUserResponse": true,
@@ -48,37 +48,20 @@ callCurrencyAPI(fxd, vxd, amount).then((output) => {
       "items": [
         {
           "simpleResponse": {
-            "textToSpeech": output
+            "textToSpeech": "this is a simple response"
           }
         }
       ]
     }
   },
   "facebook": {
-    "text": output
+    "text": "Hello, Facebook!"
   },
   "slack": {
-    "text": output
+    "text": "This is a text response for Slack."
   }
-},
-"outputContexts": [
-  {
-    "name": "projects/${PROJECT_ID}/agent/sessions/${SESSION_ID}/contexts/context name",
-    "lifespanCount": 5,
-    "parameters": {
-      "param": "param value"
-    }
-  }
-],
-"followupEventInput": {
-  "name": "event name",
-  "languageCode": "en-US",
-  "parameters": {
-    "param": "param value"
-  }
-}
-
-}).catch(() => {
+}); // Return the results of the weather API to Dialogflow
+  }).catch(() => {
     return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
   });
 });
