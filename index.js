@@ -1,7 +1,7 @@
 'use strict';
 const http = require('http');
 const host = 'stanghbot.herokuapp.com';
-const host = '10.233.6.119:8080';
+
 const listeningport = process.env.PORT || 6000;
 const webhookresponse = '';
 const express = require('express');
@@ -96,60 +96,3 @@ function callCurrencyAPI (fxd, vxd,amount) {
     
 
 
-function checkBalance (accountId) {
-  return new Promise((resolve, reject) => {
-    // Create the path for the HTTP request to get the weather
-    //Authenticate
-
-    Let path_auth = '10.233.6.201:8080/service/auth';
-   /*
-   Content-Type : application/json
-   {
-   "clientId":"billbox-airtel",
-   "client_secret":"airtel@billbox11"
-    }   
-    
-    response
-    {
-    "access_token": "48f960a0-671e-42b5-9e3b-82d2bbe51dbd",
-    "token_type": "bearer",
-    "expires_in": 4499,
-    "scope": "trust read write"
-}
-
-
-   */
-   let path_balance = '10.233.6.119:8080/checkBalance';
-   var request = require('request')
-   var postData = {'accountId':accountId};
-
-  //get headers
-
-    var options = 
-    {
-          method: 'post',
-          body: postData, // Javascript object
-          json: true, // Use,If you are sending JSON data
-          url: path_balance,
-          headers: {
-    // Specify headers, If any
-          }
-    }
-
-request(options, function (err, res, body) {
-  if (err) {
-    console.log('Error :', err)
-    reject();
-    return
-  }
-  console.log(' Body :', body)
-  resolve(some_output);
-
-});
-    // Make the HTTP request to get the weather
-   
-      
-        // Resolve the promise with the output text
-        
-});
-}
