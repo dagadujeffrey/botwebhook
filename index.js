@@ -52,10 +52,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-
+          
         var yyyy = today.getFullYear();
         if(dd<10){
             dd='0'+dd;
@@ -63,8 +60,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         if(mm<10){
             mm='0'+mm;
         } 
-
-        var today = dd+'-'+monthNames[mm-1]+'-'+yyyy;
+        var today = dd+'-'+mm+'-'+yyyy;
 
         // Create response
         let output = '';
