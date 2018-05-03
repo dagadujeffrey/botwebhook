@@ -77,9 +77,9 @@ function callCurrencyAPI (fxd, vxd,amount) {
         // Create response
             if (amount === '1')
             {
-                output = `On ${today} at Stanbic Bank, the rate from ${fxd} to ${vxd} rate is ${rate}`;
+                output = `On ${today} at Stanbic Bank, the rate from ${fxd} to ${vxd} is ${rate}`;
             }
-        else output = `${amount} ${fxd} to ${vxd} on ${today} rate is ${vxd} ${converted_amount}`;
+        else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount}`;
        
       }
         // Resolve the promise with the output text
