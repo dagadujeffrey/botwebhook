@@ -78,7 +78,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         // Create response
             if (amount === '1')
             {
-                output = `The rate from ${fxd} to ${vxd} as at ${today}is ${rate}`;
+                output = `The rate from ${fxd} to ${vxd} as at ${today} is ${rate}`;
             }
         else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
        
