@@ -73,13 +73,14 @@ function callCurrencyAPI (fxd, vxd,amount) {
             let rate = response['rate'];
         
             let converted_amount = amount * rate;
-            converted_amount = converted_amount.toFixed(4);
+            converted_amount = converted_amount.toFixed(2);
+            var converted_amount1 = numberWithCommas(converted_amount);
         // Create response
             if (amount === '1')
             {
-                output = `On ${today} at Stanbic Bank, the rate from ${fxd} to ${vxd} is ${rate}`;
+                output = `The rate from ${fxd} to ${vxd} as at ${today}is ${rate}`;
             }
-        else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount}`;
+        else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
        
       }
         // Resolve the promise with the output text
@@ -95,4 +96,10 @@ function callCurrencyAPI (fxd, vxd,amount) {
 }
     
 
-
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
