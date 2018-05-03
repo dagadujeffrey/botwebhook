@@ -60,7 +60,10 @@ function callCurrencyAPI (fxd, vxd,amount) {
         if(mm<10){
             mm='0'+mm;
         } 
-        var today = dd+'/'+mm+'/'+yyyy;
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+];
+        var today = dd+'/'+monthNames[mm-1]+'/'+yyyy;
 
         // Create response
         let output = '';
@@ -74,6 +77,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         
             let converted_amount = amount * rate;
             converted_amount = converted_amount.toFixed(2);
+            amount = amount.toFixed(2);
             var converted_amount1 = numberWithCommas(converted_amount);
             var amount1 = numberWithCommas(amount);
         // Create response
