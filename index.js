@@ -55,7 +55,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
-        mm = monthNames[mm];
+
         var yyyy = today.getFullYear();
         if(dd<10){
             dd='0'+dd;
@@ -63,7 +63,8 @@ function callCurrencyAPI (fxd, vxd,amount) {
         if(mm<10){
             mm='0'+mm;
         } 
-        var today = dd+'-'+mm+'-'+yyyy;
+        
+        var today = dd+'-'+monthNames[mm]+'-'+yyyy;
 
         // Create response
         let output = '';
