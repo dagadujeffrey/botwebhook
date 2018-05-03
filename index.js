@@ -63,7 +63,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ];
-        var today = dd+'/'+monthNames[mm-1]+'/'+yyyy;
+        var today = dd+'-'+monthNames[mm-1]+'-'+yyyy;
 
         // Create response
         let output = '';
