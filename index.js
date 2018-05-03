@@ -20,7 +20,7 @@ app.post('/rateconvertor', (req,res) =>
 {
 
 //case convertor
-
+console.log(req.body.queryResult.intent);
 let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
 let vxd = req.body.queryResult.parameters['vxd'];
 let amount = req.body.queryResult.parameters['amount'];
