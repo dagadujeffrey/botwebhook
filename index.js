@@ -75,12 +75,13 @@ function callCurrencyAPI (fxd, vxd,amount) {
             let converted_amount = amount * rate;
             converted_amount = converted_amount.toFixed(2);
             var converted_amount1 = numberWithCommas(converted_amount);
+            var amount1 = numberWithCommas(amount);
         // Create response
             if (amount === '1')
             {
                 output = `The rate from ${fxd} to ${vxd} as at ${today} is ${rate}`;
             }
-        else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
+        else output = `${amount1} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
        
       }
         // Resolve the promise with the output text
