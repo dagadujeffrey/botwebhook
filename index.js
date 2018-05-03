@@ -52,7 +52,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
-          
+
         var yyyy = today.getFullYear();
         if(dd<10){
             dd='0'+dd;
@@ -60,7 +60,7 @@ function callCurrencyAPI (fxd, vxd,amount) {
         if(mm<10){
             mm='0'+mm;
         } 
-        var today = dd+'-'+mm+'-'+yyyy;
+        var today = dd+'/'+mm+'/'+yyyy;
 
         // Create response
         let output = '';
@@ -80,11 +80,8 @@ function callCurrencyAPI (fxd, vxd,amount) {
             {
                 output = `The rate from ${fxd} to ${vxd} as at ${today} is ${rate}`;
             }
-        else 
-          {
-            var amount1 = numberWithCommas(amount1);
-            output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
-          }
+        else output = `${amount} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
+       
       }
         // Resolve the promise with the output text
         console.log(output);
@@ -106,4 +103,3 @@ function numberWithCommas(x) {
         x = x.replace(pattern, "$1,$2");
     return x;
 }
-
