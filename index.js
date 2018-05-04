@@ -41,8 +41,33 @@ switch(req.body.queryResult.intent.displayName)
         username = req.body.originalDetectIntentRequest.payload.data.user.name;
         firstname = username.split(' ').slice(0, -1).join(' ');
         lastname = username.split(' ').slice(-1).join(' ');
-        var output_welcome = `Welcome ${firstname}. It is a pleasure to speak with you. You can ask me to convert an amount between currencies`
-        return res.json({'fulfillmentText': output_welcome });
+        var output_welcome = `Welcome ${firstname}. It is a pleasure to speak with you. How can I help you?`
+        return res.json({'fulfillmentText': output_welcome ,
+        "fulfillmentMessages": [
+  {
+    "card": {
+      "title": "What Can I do",
+      "subtitle": "Quick Guide",
+      "imageUri": "",
+      "buttons": [
+        {
+          "text": "Convert 10$ to GHS",
+          "postback": ""
+        },
+        {
+          "text": "Branch Info",
+          "postback": ""
+        },
+         {
+          "text": "About Current Account",
+          "postback": ""
+        }
+      ]
+    }
+  }
+]
+
+      });
 
    break;
  }
