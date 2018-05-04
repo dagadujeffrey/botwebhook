@@ -41,12 +41,12 @@ switch(req.body.queryResult.intent.displayName)
         username = req.body.originalDetectIntentRequest.payload.data.user.name;
         firstname = username.split(' ').slice(0, -1).join(' ');
         lastname = username.split(' ').slice(-1).join(' ');
-        var output_welcome = `Welcome ${firstname}. It is a pleasure to speak with you. How can I help you?`
+        var output_welcome = `Welcome ${firstname}.`
         return res.json({'fulfillmentText': output_welcome ,
         "fulfillmentMessages": [
   {
     "card": {
-      "title": "What Can I do",
+      "title": output_welcome,
       "subtitle": "Quick Guide",
       "imageUri": "",
       "buttons": [
