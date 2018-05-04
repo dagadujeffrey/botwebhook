@@ -20,16 +20,21 @@ app.post('/rateconvertor', (req,res) =>
 {
 
 //case convertor
-console.log(req.body.queryResult.intent);
-let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
-let vxd = req.body.queryResult.parameters['vxd'];
-let amount = req.body.queryResult.parameters['amount'];
+switch(req.body.queryResult.intent.displayName)
+{
+    case 'currency.convert':
+       let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
+       let vxd = req.body.queryResult.parameters['vxd'];
+       let amount = req.body.queryResult.parameters['amount'];
 
-callCurrencyAPI(fxd, vxd, amount).then((output) => {
-    return res.json({'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
-  }).catch(() => {
-    return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
-  });
+        callCurrencyAPI(fxd, vxd, amount).then((output) => {
+        return res.json({'fulfillmentText': output }); // Return the results of the weather API to Dialogflow
+      }).catch(() => {
+        return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
+      });
+      break;
+
+ }
 });
 
 //case check balance
