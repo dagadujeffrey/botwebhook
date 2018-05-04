@@ -79,7 +79,7 @@ switch(req.body.queryResult.intent.displayName)
   }
 ],
 "outputContexts": [
-    {
+    
       {
   "name": "namereceived",
   "lifespanCount": 1,
@@ -87,7 +87,7 @@ switch(req.body.queryResult.intent.displayName)
     "name":firstname
   }
 }
-    }
+    
   ]
 
       });
