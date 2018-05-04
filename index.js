@@ -32,7 +32,7 @@ switch(req.body.queryResult.intent.displayName)
          firstname = username.split(' ').slice(0, -1).join(' ');
          lastname = username.split(' ').slice(-1).join(' ');    
        }
-       if(req.body.originalDetectIntentRequest.source == 'google')
+       else if(req.body.originalDetectIntentRequest.source == 'google')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
          firstname = 'Googler';
