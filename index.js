@@ -25,7 +25,7 @@ app.post('/rateconvertor', (req,res) =>
 switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
-       console.log(req.body.originalDetectIntentRequest.payload.data.user.name);
+       console.log(req.body.originalDetectIntentRequest.payload);
        let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
        let vxd = req.body.queryResult.parameters['vxd'];
        let amount = req.body.queryResult.parameters['amount'];
@@ -41,7 +41,7 @@ switch(req.body.queryResult.intent.displayName)
         username = req.body.originalDetectIntentRequest.payload.data.user.name;
         firstname = username.split(' ').slice(0, -1).join(' ');
         lastname = username.split(' ').slice(-1).join(' ');
-        var output_welcome = `Welcome ${firstname}.`
+        var output_welcome = `Welcome ${firstname}`
         return res.json({'fulfillmentText': output_welcome ,
         "fulfillmentMessages": [
   {
