@@ -26,7 +26,7 @@ switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
        console.log(req.body.originalDetectIntentRequest.source);
-       if(req.body.originalDetectIntentRequest.source == 'skype'  && username =='')
+       if(req.body.originalDetectIntentRequest.payload.data.source == 'skype'  && username =='')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
          firstname = username.split(' ').slice(0, -1).join(' ');
@@ -50,7 +50,7 @@ switch(req.body.queryResult.intent.displayName)
       break;
    case 'welcomebot':
         //handle different bot scenarios here. Skype Facebook etc.
-        if(req.body.originalDetectIntentRequest.source == 'skype'  && username =='')
+        if(req.body.originalDetectIntentRequest.payload.data.source == 'skype'  && username =='')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
          firstname = username.split(' ').slice(0, -1).join(' ');
