@@ -72,7 +72,7 @@ switch(req.body.queryResult.intent.displayName)
       "imageUri": "",
       "buttons": [
         {
-          "text": "Convert 10$ to GHS",
+          "text": "Convert 1$ to GHS",
           "postback": ""
         },
         {
