@@ -23,7 +23,7 @@ app.post('/rateconvertor', (req,res) =>
 switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
-        console.log(req.originalDetectIntentRequest.body);
+        console.log(req.body.originalDetectIntentRequest);
        let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
        let vxd = req.body.queryResult.parameters['vxd'];
        let amount = req.body.queryResult.parameters['amount'];
