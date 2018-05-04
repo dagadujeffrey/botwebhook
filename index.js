@@ -86,7 +86,7 @@ switch(req.body.queryResult.intent.displayName)
       "name": firstname
     }
   }
-],
+]
 
       });
 
