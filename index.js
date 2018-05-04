@@ -82,7 +82,7 @@ switch(req.body.queryResult.intent.displayName)
     
       {
   "name": "namereceived",
-  "lifespanCount": 1,
+ 
   "parameters": {
     "name":firstname
   }
