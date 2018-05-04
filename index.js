@@ -77,7 +77,7 @@ switch(req.body.queryResult.intent.displayName)
       ]
     }
   }
-],
+]
 
       });
 
