@@ -32,12 +32,18 @@ switch(req.body.queryResult.intent.displayName)
          firstname = username.split(' ').slice(0, -1).join(' ');
          lastname = username.split(' ').slice(-1).join(' ');    
        }
+       if(req.body.originalDetectIntentRequest.source == 'google')
+       {
+         username = req.body.originalDetectIntentRequest.payload.data.user.name;
+         firstname = 'Googler';
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
        let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
        let vxd = req.body.queryResult.parameters['vxd'];
        let amount = req.body.queryResult.parameters['amount'];
 
         callCurrencyAPI(fxd, vxd, amount).then((output) => {
-        return res.json({'fulfillmentText': `Hi ${firstname}! ${output}` }); // Return the results of the weather API to Dialogflow
+        return res.json({'fulfillmentText': `Sure ${firstname}! ${output}` }); // Return the results of the weather API to Dialogflow
       }).catch(() => {
         return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
       });
