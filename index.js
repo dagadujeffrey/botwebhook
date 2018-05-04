@@ -25,8 +25,8 @@ app.post('/rateconvertor', (req,res) =>
 switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
-       console.log(req.body.originalDetectIntentRequest);
-       if(req.body.originalDetectIntentRequest.payload.data.source === 'skype')
+       console.log(req.body.originalDetectIntentRequest.source);
+       if(req.body.originalDetectIntentRequest.source == 'skype')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
          firstname = username.split(' ').slice(0, -1).join(' ');
