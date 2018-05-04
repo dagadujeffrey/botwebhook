@@ -1,9 +1,9 @@
 'use strict';
 const http = require('http');
 const host = 'stanghbot.herokuapp.com';
-const username = '';
-const firstname = '';
-const lastname = '';
+var username = '';
+var firstname = '';
+var lastname = '';
 const listeningport = process.env.PORT || 6000;
 const webhookresponse = '';
 const express = require('express');
