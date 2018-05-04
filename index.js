@@ -39,8 +39,8 @@ switch(req.body.queryResult.intent.displayName)
    case 'welcomebot':
         //handle different bot scenarios here. Skype Facebook etc.
         username = req.body.originalDetectIntentRequest.payload.data.user.name;
-        firstName = username.split(' ').slice(0, -1).join(' ');
-        lastName = username.split(' ').slice(-1).join(' ');
+        firstname = username.split(' ').slice(0, -1).join(' ');
+        lastname = username.split(' ').slice(-1).join(' ');
         var output_welcome = `Welcome ${firstname}. It is a pleasure to speak with you. You can ask me to convert an amount between currencies`
         return res.json({'fulfillmentText': output_welcome });
 
