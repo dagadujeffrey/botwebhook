@@ -26,13 +26,13 @@ switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
        console.log(req.body.originalDetectIntentRequest.source);
-       if(req.body.originalDetectIntentRequest.source == 'skype' and !username=='')
+       if(req.body.originalDetectIntentRequest.source == 'skype' and && username !='')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
          firstname = username.split(' ').slice(0, -1).join(' ');
          lastname = username.split(' ').slice(-1).join(' ');    
        }
-       else if(req.body.originalDetectIntentRequest.source == 'google' and !username=='')
+       else if(req.body.originalDetectIntentRequest.source == 'google' && username!='')
        {
          username = 'Googler Man';
          firstname = 'Googler';
