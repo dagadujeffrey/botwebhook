@@ -25,7 +25,7 @@ app.post('/rateconvertor', (req,res) =>
 switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
-       console.log(req.body.originalDetectIntentRequest.source);
+       //console.log(req.body.originalDetectIntentRequest.source);
        if(req.body.originalDetectIntentRequest.source == 'skype'  && username !='')
        {
          username = req.body.originalDetectIntentRequest.payload.data.user.name;
@@ -50,9 +50,18 @@ switch(req.body.queryResult.intent.displayName)
       break;
    case 'welcomebot':
         //handle different bot scenarios here. Skype Facebook etc.
-        username = req.body.originalDetectIntentRequest.payload.data.user.name;
-        firstname = username.split(' ').slice(0, -1).join(' ');
-        lastname = username.split(' ').slice(-1).join(' ');
+        if(req.body.originalDetectIntentRequest.source == 'skype'  && username !='')
+       {
+         username = req.body.originalDetectIntentRequest.payload.data.user.name;
+         firstname = username.split(' ').slice(0, -1).join(' ');
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
+       else if(req.body.originalDetectIntentRequest.source == 'google' && username!='')
+       {
+         username = 'Googler Man';
+         firstname = 'Googler';
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
         var output_welcome = `Welcome ${firstname}`
         return res.json({'fulfillmentText': output_welcome ,
         "fulfillmentMessages": [
@@ -77,17 +86,7 @@ switch(req.body.queryResult.intent.displayName)
       ]
     }
   }
-],
-"outputContexts": [
-  {
-    "name": "projects/${PROJECT_ID}/agent/sessions/${SESSION_ID}/contexts/context name",
-    "lifespanCount": 5,
-    "parameters": {
-      "name": firstname
-    }
-  }
 ]
-
       });
 
    break;
