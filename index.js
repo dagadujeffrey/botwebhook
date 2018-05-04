@@ -1,7 +1,9 @@
 'use strict';
 const http = require('http');
 const host = 'stanghbot.herokuapp.com';
-
+const username = '';
+const firstname = '';
+const lastname = '';
 const listeningport = process.env.PORT || 6000;
 const webhookresponse = '';
 const express = require('express');
@@ -23,7 +25,7 @@ app.post('/rateconvertor', (req,res) =>
 switch(req.body.queryResult.intent.displayName)
 {
     case 'currency.convert':
-        console.log(req.body.originalDetectIntentRequest.payload.data.user.name);
+       console.log(req.body.originalDetectIntentRequest.payload.data.user.name);
        let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
        let vxd = req.body.queryResult.parameters['vxd'];
        let amount = req.body.queryResult.parameters['amount'];
@@ -34,7 +36,15 @@ switch(req.body.queryResult.intent.displayName)
         return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
       });
       break;
+   case 'welcomebot':
+        //handle different bot scenarios here. Skype Facebook etc.
+        username = req.body.originalDetectIntentRequest.payload.data.user.name;
+        firstName = username.split(' ').slice(0, -1).join(' ');
+        lastName = username.split(' ').slice(-1).join(' ');
+        var output_welcome = `Welcome ${firstname}. It is a pleasure to speak with you. You can ask me to convert an amount between currencies`
+        return res.json({'fulfillmentText': output_welcome });
 
+   break;
  }
 });
 
