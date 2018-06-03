@@ -1,5 +1,5 @@
 'use strict';
-const http = require('https');
+const http = require('http');
 const soap = require('soap');
 const host = 'stanghbot.herokuapp.com';
 const fx_api_url = 'https://196.8.204.73/citwebservice/GetFXRate?WSDL';
