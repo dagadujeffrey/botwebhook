@@ -1,8 +1,6 @@
 'use strict';
 const http = require('http');
-const soap = require('soap');
 const host = 'stanghbot.herokuapp.com';
-const fx_api_url = 'https://196.8.204.73/citwebservice/GetFXRate?WSDL';
 var username = '';
 var firstname = '';
 var lastname = '';
@@ -101,19 +99,21 @@ switch(req.body.queryResult.intent.displayName)
 
 function callCurrencyAPI (fxd, vxd,amount) {
   return new Promise((resolve, reject) => {
-    // Create the path for the HTTP request to body of the request to get the currency
-    var args = {fixedCurrency: fxd, varCurrency : vxd};
+    // Create the path for the HTTP request to get the weather
+   let path = '/api/convertor/' + fxd + '/' + vxd + '/' + amount;
+
     // Make the HTTP request to get the weather
-    soap.createClient(url, function(err, client) 
-    {
-
-    client.GetFXRate(args, function(err, result) 
-    {
-
-        console.log(result.GetFXRateResult);
+    http.get({host: host, path: path}, (res) => {
+      let body = ''; // var to store the response chunks
+      res.on('data', (d) => { body += d; }); // store each response chunk
+      res.on('end', () => {
+        // After all the data has been received parse the JSON for desired data
+        let response = JSON.parse(body);
+        
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
+
         var yyyy = today.getFullYear();
         if(dd<10){
             dd='0'+dd;
@@ -122,22 +122,20 @@ function callCurrencyAPI (fxd, vxd,amount) {
             mm='0'+mm;
         } 
         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+];
         var today = dd+'-'+monthNames[mm-1]+'-'+yyyy;
+
+        // Create response
         let output = '';
-
-        //Logic to get the rate of the inverse
-        if (!result)
+        if (!response)
         {
-          //retry with reverse
-
           output = `Oops. Now here is a currency I do not support. Please try again with Euros, Dollars, Ghana Cedis, Pounds or Rands`;
-
         }
         else
         {
-            //let rate = response['rate'];
-            //Get rate from JSON
+            let rate = response['rate'];
+        
             let converted_amount = amount * rate;
             converted_amount = converted_amount.toFixed(2);
             amount = amount.toFixed(2);
@@ -151,20 +149,19 @@ function callCurrencyAPI (fxd, vxd,amount) {
         else output = `${amount1} ${fxd} to ${vxd} on ${today} is ${vxd} ${converted_amount1}`;
        
       }
-
-
-
-    }).then(function(){
-      console.log('No. Now what next');
-    });
-
-    });
         // Resolve the promise with the output text
         console.log(output);
         resolve(output);
       });
-
+      res.on('error', (error) => {
+        console.log(`Error calling the currency API: ${error}`)
+        reject();
+      });
+    });
+  });
 }
+    
+
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
