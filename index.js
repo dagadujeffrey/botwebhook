@@ -71,7 +71,7 @@ switch(req.body.queryResult.intent.displayName)
               
         getUserInfo("1994382743908199").then(function(results){
     // access results here by chaining to the returned promise
-    return res.json({ 'fulfillmentText': `Hello ${profile_data.first_name} I am Siva, and I can help you pay bills, buy airtime, check FX rates, check your balance and more. ${happy}`});
+    return res.json({ 'fulfillmentText': `Hello ${results.first_name} I am Siva, and I can help you pay bills, buy airtime, check FX rates, check your balance and more. ${happy}`});
 });
 
 
