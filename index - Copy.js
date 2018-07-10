@@ -21,14 +21,78 @@ console.log('Get User Details BOT Running at ...' + listeningport);
 app.post('/rateconvertor', (req,res) => 
 {
 
-      console.log(req.body.originalDetectIntentRequest.source);
-      console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload.data));
-  
-     
+//case convertor
+switch(req.body.queryResult.intent.displayName)
+{
+    case 'currency.convert':
+       console.log(req.body.originalDetectIntentRequest.source);
+       if(req.body.originalDetectIntentRequest.payload.data.source == 'skype' )
+       {
+         username = req.body.originalDetectIntentRequest.payload.data.user.name;
+         firstname = username.split(' ').slice(0, -1).join(' ');
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
+       else if(req.body.originalDetectIntentRequest.source == 'google')
+       {
+         username = 'Googler Man';
+         firstname = 'Googler';
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
+       let fxd = req.body.queryResult.parameters['fxd']; // city is a required param
+       let vxd = req.body.queryResult.parameters['vxd'];
+       let amount = req.body.queryResult.parameters['amount'];
 
+        callCurrencyAPI(fxd, vxd, amount).then((output) => {
+        return res.json({'fulfillmentText': `Sure ${firstname}! ${output}` }); // Return the results of the weather API to Dialogflow
+      }).catch(() => {
+        return res.json({ 'fulfillmentText': `I don't know the weather but I hope it's good!` });
+      });
+      break;
+   case 'welcomebot':
+        //handle different bot scenarios here. Skype Facebook etc.
+        if(req.body.originalDetectIntentRequest.payload.data.source == 'skype' )
+       {
+         username = req.body.originalDetectIntentRequest.payload.data.user.name;
+         firstname = username.split(' ').slice(0, -1).join(' ');
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
+       else if(req.body.originalDetectIntentRequest.source == 'google')
+       {
+         username = 'Googler Man';
+         firstname = 'Googler';
+         lastname = username.split(' ').slice(-1).join(' ');    
+       }
+        var output_welcome = `Welcome ${firstname}`
+        return res.json({'fulfillmentText': output_welcome ,
+        "fulfillmentMessages": [
+  {
+    "card": {
+      "title": output_welcome,
+      "subtitle": "Quick Guide",
+      "imageUri": "",
+      "buttons": [
+        {
+          "text": "Convert 1$ to GHS",
+          "postback": ""
+        },
+        {
+          "text": "Branch Info",
+          "postback": ""
+        },
+         {
+          "text": "About Current Account",
+          "postback": ""
+        }
+      ]
+    }
+  }
+]
+      });
 
+   break;
+ }
+});
 
-}
 //case check balance
 
 
