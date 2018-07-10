@@ -49,10 +49,10 @@ switch(req.body.queryResult.intent.displayName)
       });
       break;
 
-       case 'test':
+    case 'test':
        console.log(req.body.originalDetectIntentRequest.source);
-       console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload.data));
-       
+       console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload));
+        return res.json({ 'fulfillmentText': `Hi. Test Guy` });
 
         
       break;
