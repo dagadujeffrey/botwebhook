@@ -132,7 +132,7 @@ function getUserInfo(sender_psid)
 if (err) {
     return console.log(err); 
 }
-
+console.log(JSON.stringify(body));
 return body;
 
 });
