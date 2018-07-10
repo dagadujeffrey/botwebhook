@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "request": "^2.87.0"
   },
   "devDependencies": {
     "istanbul": "^1.0.0-alpha.2",
