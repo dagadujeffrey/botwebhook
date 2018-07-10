@@ -28,7 +28,7 @@ app.post('/rateconvertor', (req,res) =>
 
 
 
-}
+});
 //case check balance
 
 
