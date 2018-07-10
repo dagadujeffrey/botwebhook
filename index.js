@@ -124,8 +124,7 @@ switch(req.body.queryResult.intent.displayName)
 function getUserInfo(sender_psid)
 {
     request('https://graph.facebook.com/v2.6/'+sender_psid+'?fields=first_name,last_name,profile_pic&access_token='+PAGE_ACCESS_TOKEN,
- { json: true }, (err,res, body)
-=> {
+ { json: true }, (err,res, body)=> {
 
 if (err) {
 return console.log(err); }
