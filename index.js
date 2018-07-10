@@ -21,8 +21,7 @@ console.log('Get User Details BOT Running at ...' + listeningport);
 app.post('/rateconvertor', (req,res) => 
 {
     
-    console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload));
-    console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload.data));
+    
 //case convertor
 switch(req.body.queryResult.intent.displayName)
 {
@@ -59,10 +58,12 @@ switch(req.body.queryResult.intent.displayName)
         
       break;
 
-    case 'checkbalance':
-       console.log(req.body.originalDetectIntentRequest.source);
-       console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload));
-        return res.json({ 'fulfillmentText': `Hi. I am the balance checker` });
+    case 'get_started':
+
+        console.log('psid' + req.body.originalDetectIntentRequest.payload.data.sender.id);
+        getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id);
+       
+        return res.json({ 'fulfillmentText': `Hello David I am Leo, and I can help you send money, topup, check your balance and more.` });
 
         
       break;
@@ -115,6 +116,26 @@ switch(req.body.queryResult.intent.displayName)
 });
 
 //case check balance
+
+
+
+function getUserInfo(sender_psid)
+{
+    request('https://graph.facebook.com/v2.6/'+sender_psid+'?fields=first_name,last_name,profile_pic&access_token='+PAGE_ACCESS_TOKEN,
+ { json: true }, (err,
+res, body)
+=> {
+
+if (err) {
+return console.log(err); }
+
+console.log(body.url);
+
+console.log(body.explanation);
+
+});
+
+}
 
 
 
