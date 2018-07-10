@@ -20,7 +20,9 @@ console.log('Get User Details BOT Running at ...' + listeningport);
 
 app.post('/rateconvertor', (req,res) => 
 {
-
+    
+    console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload));
+    console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload.data));
 //case convertor
 switch(req.body.queryResult.intent.displayName)
 {
@@ -56,6 +58,15 @@ switch(req.body.queryResult.intent.displayName)
 
         
       break;
+
+    case 'checkbalance':
+       console.log(req.body.originalDetectIntentRequest.source);
+       console.log(JSON.stringify(req.body.originalDetectIntentRequest.payload));
+        return res.json({ 'fulfillmentText': `Hi. I am the balance checker` });
+
+        
+      break;
+        
    case 'welcomebot':
         //handle different bot scenarios here. Skype Facebook etc.
         if(req.body.originalDetectIntentRequest.payload.data.source == 'skype' )
@@ -98,6 +109,8 @@ switch(req.body.queryResult.intent.displayName)
       });
 
    break;
+
+    
  }
 });
 
