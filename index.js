@@ -62,10 +62,10 @@ switch(req.body.queryResult.intent.displayName)
 
     case 'get_started':
 
-        console.log('psid' + req.body.originalDetectIntentRequest.payload.data.sender.id);
+        console.log('psid :: ' + req.body.originalDetectIntentRequest.payload.data.sender.id);
         getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id);
        
-        return res.json({ 'fulfillmentText': `Hello David I am Leo, and I can help you send money, topup, check your balance and more.` });
+        return res.json({ 'fulfillmentText': `Hello David I am Siva, and I can help you send money, topup, check your balance and more.` });
 
         
       break;
@@ -127,11 +127,10 @@ function getUserInfo(sender_psid)
  { json: true }, (err,res, body)=> {
 
 if (err) {
-return console.log(err); }
+    return console.log(err); 
+}
 
-console.log(body.url);
-
-console.log(body.explanation);
+console.log(body);
 
 });
 
