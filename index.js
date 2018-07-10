@@ -64,9 +64,9 @@ switch(req.body.queryResult.intent.displayName)
     case 'get_started':
 
         console.log('psid :: ' + req.body.originalDetectIntentRequest.payload.data.sender.id);
-        psid_fname = getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id);
+        
        
-        return res.json({ 'fulfillmentText': `Hello ${psid_fname} I am Siva, and I can help you send money, topup, check your balance and more. &#9824;` });
+        return res.json({ 'fulfillmentText': `Hello ${getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id)} I am Siva, and I can help you send money, topup, check your balance and more. &#9824;` });
 
         
       break;
