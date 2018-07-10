@@ -129,6 +129,7 @@ switch(req.body.queryResult.intent.displayName)
 
 
 
+
 function getUserInfo(sender_psid){
 
   // Setting URL and headers for request
