@@ -1,6 +1,7 @@
 'use strict';
 const http = require('https');
 const request = require('request');
+const happy= '😃'
 const host = 'stanghbot.herokuapp.com';
 var username = '';
 var firstname = '';
@@ -65,7 +66,7 @@ switch(req.body.queryResult.intent.displayName)
 
         console.log('psid :: ' + req.body.originalDetectIntentRequest.payload.data.sender.id);
         getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id).then(function(profile_data){
-            return res.json({ 'fulfillmentText': `Hello ${profile_data.first_name} I am Siva, and I can help you pay bills, buy airtime, check FX rates, check your balance and more. ` + happy });
+            return res.json({ 'fulfillmentText': `Hello ${profile_data.first_name} I am Siva, and I can help you pay bills, buy airtime, check FX rates, check your balance and more. ${happy}`});
         });
               
         
@@ -124,21 +125,46 @@ switch(req.body.queryResult.intent.displayName)
 
 
 
-function getUserInfo(sender_psid)
-{
-    request('https://graph.facebook.com/v2.6/'+sender_psid+'?fields=first_name,last_name,profile_pic&access_token='+PAGE_ACCESS_TOKEN,
- { json: true }, (err,res, body)=> {
+function getUserInfo(sender_psid){
 
-if (err) {
-    return console.log(err); 
+  // Setting URL and headers for request
+    var options = {
+        url: 'https://graph.facebook.com/v2.6/'+sender_psid+'?fields=first_name,last_name,profile_pic&access_token='+PAGE_ACCESS_TOKEN
+        
+    };
+    // Return new promise 
+    return new Promise(function(resolve, reject) {
+     // Do async job
+        request.get(options, function(err, resp, body) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(JSON.parse(body));
+            }
+        })
+    })
+
+
+  // var options = {
+  //   ur
+  // }
+  // request('https://graph.facebook.com/v2.6/'+sender_psid+'?fields=first_name,last_name,profile_pic&access_token='+PAGE_ACCESS_TOKEN,
+  // { json: true }, (err,res, body)=> {
+
+  // if (err) {
+  // return console.log(err); 
+  // }
+  // console.log(JSON.stringify(body));
+  // return body;
+
+  // });
+
+  // }
+
+
+
+
 }
-console.log(JSON.stringify(body));
-return body;
-
-});
-
-}
-
 
 
 function callCurrencyAPI (fxd, vxd,amount) {
