@@ -64,9 +64,11 @@ switch(req.body.queryResult.intent.displayName)
     case 'get_started':
 
         console.log('psid :: ' + req.body.originalDetectIntentRequest.payload.data.sender.id);
+        getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id).then(function(profile_data){
+            return res.json({ 'fulfillmentText': `Hello ${profile_data.first_name} I am Siva, and I can help you pay bills, buy airtime, check FX rates, check your balance and more. ` + happy });
+        });
+              
         
-       
-        return res.json({ 'fulfillmentText': `Hello ${getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id)} I am Siva, and I can help you send money, topup, check your balance and more. &#9824;` });
 
         
       break;
@@ -131,7 +133,7 @@ if (err) {
     return console.log(err); 
 }
 
-return body.first_name;
+return body;
 
 });
 
