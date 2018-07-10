@@ -65,7 +65,7 @@ switch(req.body.queryResult.intent.displayName)
         console.log('psid :: ' + req.body.originalDetectIntentRequest.payload.data.sender.id);
         getUserInfo(req.body.originalDetectIntentRequest.payload.data.sender.id);
        
-        return res.json({ 'fulfillmentText': `Hello David I am Siva, and I can help you send money, topup, check your balance and more.` });
+        return res.json({ 'fulfillmentText': `Hello David I am Siva, and I can help you send money, topup, check your balance and more. U+1F600` });
 
         
       break;
